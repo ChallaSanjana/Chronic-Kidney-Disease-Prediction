@@ -59,6 +59,10 @@ button:disabled { cursor: wait; opacity: .65; }
 .upload-panel p { color: #71898e; font-size: .85rem; margin: 0 auto 1.25rem; max-width: 430px; }
 .upload-label { background: #fff; border: 1px solid #b7dcd5; border-radius: 8px; color: #147f72; cursor: pointer; display: inline-block; padding: .7rem 1rem; }
 .upload-label input { display: none; }
+.ocr-status { color: #147d6e; font-size: .82rem; font-weight: 700; margin: 1rem 0 0; }
+.ocr-details { background: #f7fbfb; border: 1px solid #dbeaea; border-radius: 9px; color: #527075; font-size: .8rem; padding: .8rem 1rem; }
+.ocr-details summary { cursor: pointer; font-weight: 700; }
+.ocr-details pre { max-height: 180px; overflow: auto; white-space: pre-wrap; }
 .result-grid { display: grid; gap: 1rem; grid-template-columns: 1.3fr 1fr 1fr; margin: 1.5rem 0; }
 .metric { background: #f4f9f9; border: 1px solid #e4eeee; border-radius: 13px; min-height: 130px; padding: 1.2rem; }
 .metric > span { color: #789094; font-size: .78rem; font-weight: 700; }
