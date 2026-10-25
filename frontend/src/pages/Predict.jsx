@@ -83,6 +83,7 @@ export default function Predict() {
     setLoading(true)
     try {
       const { data } = await api.post('/predict', form)
+      window.dispatchEvent(new Event('renalcare:prediction-created'))
       navigate('/result', { state: data })
     } catch (err) {
       setError(err.response?.data?.error || 'Prediction service is unavailable')

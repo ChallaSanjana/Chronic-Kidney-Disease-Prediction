@@ -5,14 +5,16 @@ import Register from './pages/Register'
 import Predict from './pages/Predict'
 import Result from './pages/Result'
 import History from './pages/History'
+import Dashboard from './pages/Dashboard'
 
 function Layout() {
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <NavLink className="brand" to="/predict"><span className="brand-mark">+</span><span>Renal<span>Care</span></span></NavLink>
+        <NavLink className="brand" to="/dashboard"><span className="brand-mark">+</span><span>Renal<span>Care</span></span></NavLink>
         <p className="sidebar-label">Workspace</p>
         <nav className="side-nav">
+          <NavLink to="/dashboard"><span className="nav-icon">◈</span> Dashboard</NavLink>
           <NavLink to="/predict"><span className="nav-icon">⌁</span> New screening</NavLink>
           <NavLink to="/history"><span className="nav-icon">◷</span> My history</NavLink>
         </nav>
@@ -51,11 +53,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route element={<ProtectedApp />}>
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/predict" element={<Predict />} />
           <Route path="/result" element={<Result />} />
           <Route path="/history" element={<History />} />
         </Route>
-        <Route path="*" element={<Navigate to="/predict" replace />} />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   )
