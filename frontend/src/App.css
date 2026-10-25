@@ -78,15 +78,34 @@ button:disabled { cursor: wait; opacity: .65; }
 .page-heading { align-items: flex-start; display: flex; justify-content: space-between; margin-bottom: 1.5rem; }
 .page-heading h1 { margin-bottom: .4rem; }
 .history-count { background: #e0f4ef; border-radius: 999px; color: #147d6e; font-size: .82rem; font-weight: 700; padding: .45rem .75rem; }
+.history-toolbar { align-items: end; background: #f7fbfb; border: 1px solid #e3eeee; border-radius: 12px; display: flex; gap: .8rem; margin-bottom: 1.25rem; padding: 1rem; }
+.history-toolbar label { min-width: 150px; }
+.history-toolbar input, .history-toolbar select { background: #fff; padding: .55rem .65rem; }
+.clear-filter { background: transparent; border: 1px solid #b7dcd5; color: #147d6e; font-size: .8rem; padding: .6rem .75rem; }
+.clear-filter:hover { background: #eaf7f4; }
+.details-panel { background: #f4fbfa; border: 1px solid #bfe3dc; border-radius: 13px; margin-bottom: 1.25rem; padding: 1.25rem; }
+.details-heading { align-items: flex-start; display: flex; justify-content: space-between; }
+.details-heading h2 { font-family: Manrope, sans-serif; font-size: 1.1rem; margin: .3rem 0 0; }
+.icon-button { background: transparent; color: #527075; font-size: 1.5rem; line-height: 1; padding: .1rem .35rem; }
+.details-metrics { display: grid; gap: .75rem; grid-template-columns: repeat(3, 1fr); margin: 1.25rem 0; }
+.details-metrics > div { background: #fff; border: 1px solid #e1eeee; border-radius: 9px; padding: .8rem; }
+.details-metrics span { color: #789094; display: block; font-size: .75rem; }
+.details-metrics strong { display: block; font-family: Manrope, sans-serif; margin-top: .35rem; }
+.details-panel h3 { font-size: .9rem; }
+.factor-list { list-style: none; margin: 0 0 1.1rem; padding: 0; }
+.factor-list li { border-bottom: 1px solid #dceceb; display: flex; justify-content: space-between; padding: .55rem 0; }
+.factor-list strong { color: #147d6e; }
 .table-wrap { overflow-x: auto; }
 table { border-collapse: collapse; min-width: 650px; width: 100%; }
 th, td { border-bottom: 1px solid #e7eeee; padding: 1rem .5rem; text-align: left; }
 th { color: #789094; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
 .delete-button { background: #fff; border: 1px solid #e2b8b8; color: #b42318; font-size: .8rem; padding: .5rem .7rem; }
 .delete-button:hover { background: #fff4f4; }
+.action-cell { display: flex; gap: .45rem; }
+.details-button { background: #eaf7f4; color: #147d6e; font-size: .8rem; padding: .5rem .7rem; white-space: nowrap; }
 .auth-page { align-items: center; background: #eef8f6; display: flex; min-height: 100vh; justify-content: center; padding: 1.5rem; }
 .narrow { max-width: 460px; width: 100%; }
 .auth-brand { color: #0e3036; display: block; font-family: Manrope, sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 1.8rem; text-align: center; text-decoration: none; }
 @media (max-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 700px) { .sidebar { min-height: auto; padding: 1rem; position: static; width: 100%; } .sidebar-label, .sidebar-bottom { display: none; } .side-nav { display: flex; margin-top: 1rem; } .side-nav a { padding: .55rem .7rem; } .content-shell { margin-left: 0; } .topbar { padding: 1rem 5%; } .topbar-status { display: none; } main { padding: 2rem 1rem; } .disclaimer { margin-left: 0; } .grid, .result-grid { grid-template-columns: repeat(2, 1fr); } .form-body { padding: 1.25rem; } .mode-switch { padding-left: 1.25rem; } }
+@media (max-width: 700px) { .sidebar { min-height: auto; padding: 1rem; position: static; width: 100%; } .sidebar-label, .sidebar-bottom { display: none; } .side-nav { display: flex; margin-top: 1rem; } .side-nav a { padding: .55rem .7rem; } .content-shell { margin-left: 0; } .topbar { padding: 1rem 5%; } .topbar-status { display: none; } main { padding: 2rem 1rem; } .disclaimer { margin-left: 0; } .grid, .result-grid { grid-template-columns: repeat(2, 1fr); } .form-body { padding: 1.25rem; } .mode-switch { padding-left: 1.25rem; } .history-toolbar { align-items: stretch; flex-direction: column; } }
 @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } .result-grid { grid-template-columns: 1fr; } .form-actions, .page-heading { align-items: stretch; flex-direction: column; gap: 1rem; } .form-actions button { width: 100%; } }
