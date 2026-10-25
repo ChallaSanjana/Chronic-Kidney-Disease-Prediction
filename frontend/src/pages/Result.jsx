@@ -23,8 +23,13 @@ export default function Result() {
   }))
   const gaugeData = [{ name: 'Probability', value: probability }, { name: 'Remaining', value: 1 - probability }]
 
-  return <section className="card">
-    <h1>Prediction result</h1>
+  return <div>
+    <div className="page-title">
+      <span className="eyebrow">SCREENING COMPLETE</span>
+      <h1>Your kidney health snapshot.</h1>
+      <p className="muted">Here is the model’s estimate based on the information provided. Review the contributing factors below.</p>
+    </div>
+    <section className="card">
     <div className="result-grid">
       <div className="metric gauge-card">
         <span>CKD probability</span>
@@ -57,6 +62,7 @@ export default function Result() {
         </BarChart>
       </ResponsiveContainer>
     </div>
-    <Link className="button" to="/predict">New prediction</Link>
-  </section>
+    <div className="form-actions"><span className="muted">Need to check another set of values?</span><Link className="button" to="/predict">New screening →</Link></div>
+    </section>
+  </div>
 }

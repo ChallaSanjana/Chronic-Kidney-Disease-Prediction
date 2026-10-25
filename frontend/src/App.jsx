@@ -9,18 +9,28 @@ import History from './pages/History'
 function Layout() {
   return (
     <div className="app-shell">
-      <header>
-        <NavLink className="brand" to="/predict">RenalCare</NavLink>
-        <nav>
-          <NavLink to="/predict">Predict</NavLink>
-          <NavLink to="/history">History</NavLink>
-          <button type="button" className="link-button" onClick={() => {
+      <aside className="sidebar">
+        <NavLink className="brand" to="/predict"><span className="brand-mark">+</span><span>Renal<span>Care</span></span></NavLink>
+        <p className="sidebar-label">Workspace</p>
+        <nav className="side-nav">
+          <NavLink to="/predict"><span className="nav-icon">⌁</span> New screening</NavLink>
+          <NavLink to="/history"><span className="nav-icon">◷</span> My history</NavLink>
+        </nav>
+        <div className="sidebar-bottom">
+          <div className="secure-note"><span className="secure-dot" /> Secure session</div>
+          <button type="button" className="logout-button" onClick={() => {
             localStorage.removeItem('token')
             window.location.href = '/login'
-          }}>Log out</button>
-        </nav>
-      </header>
-      <main><Outlet /></main>
+          }}>Sign out</button>
+        </div>
+      </aside>
+      <div className="content-shell">
+        <header className="topbar">
+          <div><span className="eyebrow">PERSONAL HEALTH WORKSPACE</span><strong>Kidney health screening</strong></div>
+          <div className="topbar-status"><span className="status-pulse" /> Model ready</div>
+        </header>
+        <main><Outlet /></main>
+      </div>
       <footer className="disclaimer" role="note">
         This tool is a screening aid for educational purposes and not a medical diagnosis.
         Please consult a qualified healthcare professional for medical advice.
