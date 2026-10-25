@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter, NavLink, Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import './App.css'
 import api from './api'
+import { LanguageProvider, useLanguage } from './i18n.jsx'
+import { ThemeProvider, useTheme } from './Theme.jsx'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Predict from './pages/Predict'
@@ -18,6 +20,8 @@ function Avatar({ profile, className = '' }) {
 
 function Layout() {
   const [profile, setProfile] = useState(null)
+  const { language, setLanguage } = useLanguage()
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const loadProfile = () => api.get('/auth/me').then(({ data }) => setProfile(data.user)).catch(() => {})
@@ -48,6 +52,7 @@ function Layout() {
       <div className="content-shell">
         <header className="topbar">
           <div><span className="eyebrow">PERSONAL HEALTH WORKSPACE</span><strong>Kidney health screening</strong></div>
+          <div className="header-controls"><label className="language-switcher">Language<select value={language} onChange={(event) => setLanguage(event.target.value)}><option value="en">English</option><option value="te">తెలుగు</option></select></label><button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>{theme === 'light' ? '☾ Dark' : '☀ Light'}</button></div>
         </header>
         <main><Outlet /></main>
       </div>
@@ -62,7 +67,7 @@ function ProtectedApp() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <ThemeProvider><LanguageProvider><BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -77,7 +82,7 @@ function App() {
         </Route>
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter></LanguageProvider></ThemeProvider>
   )
 }
 

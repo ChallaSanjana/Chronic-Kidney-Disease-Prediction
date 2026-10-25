@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../api'
+import { LanguageSwitcher } from '../i18n.jsx'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ export default function Register() {
       navigate('/predict')
     } catch (err) { setError(err.response?.data?.error || 'Unable to register') }
   }
-  return <div className="auth-page"><section className="card narrow"><a className="auth-brand" href="/login"><span className="brand-mark">+</span> RenalCare</a><h1>Create your account</h1><p className="muted">Start monitoring your kidney health.</p>
+  return <div className="auth-page"><LanguageSwitcher /><section className="card narrow"><a className="auth-brand" href="/login"><span className="brand-mark">+</span> RenalCare</a><h1>Create your account</h1><p className="muted">Start monitoring your kidney health.</p>
     <form onSubmit={submit}><label>Name<input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} /></label>
       <label>Email<input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} /></label>
       <label>Password<input type="password" minLength="8" required value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} /></label>
