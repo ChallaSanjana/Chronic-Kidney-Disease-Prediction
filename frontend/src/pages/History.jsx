@@ -75,6 +75,7 @@ export default function History() {
     const beforeEnd = !toDate || date <= new Date(`${toDate}T23:59:59.999`)
     return (riskFilter === 'all' || item.riskLevel === riskFilter) && afterStart && beforeEnd
   }), [items, riskFilter, fromDate, toDate])
+  const displayedItems = filteredItems
 
   const selected = items.find((item) => item._id === selectedId)
 
@@ -95,7 +96,7 @@ export default function History() {
   return <section className="card">
     <div className="page-heading">
       <div><h1>Prediction history</h1><p className="muted">Review and download your previous kidney health screenings.</p></div>
-      <span className="history-count">{filteredItems.length} of {items.length}</span>
+      <span className="history-count" key={`${displayedItems.length}-${items.length}`}>{displayedItems.length} of {items.length}</span>
     </div>
     <div className="history-toolbar">
       <label>From<input type="date" value={fromDate} onChange={(event) => setFromDate(event.target.value)} /></label>
@@ -105,9 +106,9 @@ export default function History() {
     </div>
     {error && <p className="error">{error}</p>}
     {selected && <Details item={selected} onClose={() => setSelectedId('')} onDownload={() => downloadPredictionPdf(selected)} />}
-    {loading ? <p className="muted">Loading prediction history...</p> : filteredItems.length === 0 ? <p className="muted">No predictions match your filters.</p> : <div className="table-wrap">
+    {loading ? <p className="muted">Loading prediction history...</p> : displayedItems.length === 0 ? <p className="muted">No predictions match your filters.</p> : <div className="table-wrap">
       <table><thead><tr><th>Date</th><th>Probability</th><th>Risk level</th><th>Prediction</th><th aria-label="Actions" /></tr></thead>
-        <tbody>{filteredItems.map((item) => <tr key={item._id}>
+        <tbody>{displayedItems.map((item) => <tr key={item._id}>
           <td>{formatDate(item.createdAt)}</td>
           <td>{(Number(item.probability) * 100).toFixed(1)}%</td>
           <td><span className={`risk-badge risk-${item.riskLevel.toLowerCase()}`}>{item.riskLevel}</span></td>
