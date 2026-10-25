@@ -1,0 +1,9 @@
+# Versions used to create model_lgb.pkl / preprocessing.pkl (Python 3.12.3). Pickles load reliably only with these.
+scikit-learn==1.8.0
+lightgbm==4.7.0
+numpy==2.4.4
+pandas==3.0.2
+shap==0.54.1
+fastapi
+uvicorn
+pydantic
