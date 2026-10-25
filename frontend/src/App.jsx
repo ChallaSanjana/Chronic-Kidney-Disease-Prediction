@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import { BrowserRouter, NavLink, Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import './App.css'
+import api from './api'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Predict from './pages/Predict'
@@ -7,8 +9,22 @@ import Result from './pages/Result'
 import History from './pages/History'
 import Dashboard from './pages/Dashboard'
 import Insights from './pages/Insights'
+import Education from './pages/Education'
+import Settings from './pages/Settings'
+
+function Avatar({ profile, className = '' }) {
+  return <span className={`profile-avatar ${className}`}>{profile?.name?.charAt(0).toUpperCase() || '?'}</span>
+}
 
 function Layout() {
+  const [profile, setProfile] = useState(null)
+
+  useEffect(() => {
+    const loadProfile = () => api.get('/auth/me').then(({ data }) => setProfile(data.user)).catch(() => {})
+    loadProfile()
+    return undefined
+  }, [])
+
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -19,9 +35,10 @@ function Layout() {
           <NavLink to="/predict"><span className="nav-icon">⌁</span> New screening</NavLink>
           <NavLink to="/history"><span className="nav-icon">◷</span> My history</NavLink>
           <NavLink to="/insights"><span className="nav-icon">⌁</span> Health insights</NavLink>
+          <NavLink to="/education"><span className="nav-icon">?</span> Kidney education</NavLink>
         </nav>
         <div className="sidebar-bottom">
-          <div className="secure-note"><span className="secure-dot" /> Secure session</div>
+          <NavLink to="/settings"><Avatar profile={profile} /> Profile & settings</NavLink>
           <button type="button" className="logout-button" onClick={() => {
             localStorage.removeItem('token')
             window.location.href = '/login'
@@ -31,14 +48,9 @@ function Layout() {
       <div className="content-shell">
         <header className="topbar">
           <div><span className="eyebrow">PERSONAL HEALTH WORKSPACE</span><strong>Kidney health screening</strong></div>
-          <div className="topbar-status"><span className="status-pulse" /> Model ready</div>
         </header>
         <main><Outlet /></main>
       </div>
-      <footer className="disclaimer" role="note">
-        This tool is a screening aid for educational purposes and not a medical diagnosis.
-        Please consult a qualified healthcare professional for medical advice.
-      </footer>
     </div>
   )
 }
@@ -57,6 +69,8 @@ function App() {
         <Route element={<ProtectedApp />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/insights" element={<Insights />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/predict" element={<Predict />} />
           <Route path="/result" element={<Result />} />
           <Route path="/history" element={<History />} />

@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       select: false,
     },
+    preferences: {
+      emailUpdates: { type: Boolean, default: true },
+      healthReminders: { type: Boolean, default: true },
+    },
   },
   { timestamps: true },
 );
