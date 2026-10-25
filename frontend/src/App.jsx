@@ -6,6 +6,7 @@ import Predict from './pages/Predict'
 import Result from './pages/Result'
 import History from './pages/History'
 import Dashboard from './pages/Dashboard'
+import Insights from './pages/Insights'
 
 function Layout() {
   return (
@@ -17,6 +18,7 @@ function Layout() {
           <NavLink to="/dashboard"><span className="nav-icon">◈</span> Dashboard</NavLink>
           <NavLink to="/predict"><span className="nav-icon">⌁</span> New screening</NavLink>
           <NavLink to="/history"><span className="nav-icon">◷</span> My history</NavLink>
+          <NavLink to="/insights"><span className="nav-icon">⌁</span> Health insights</NavLink>
         </nav>
         <div className="sidebar-bottom">
           <div className="secure-note"><span className="secure-dot" /> Secure session</div>
@@ -54,6 +56,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route element={<ProtectedApp />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/insights" element={<Insights />} />
           <Route path="/predict" element={<Predict />} />
           <Route path="/result" element={<Result />} />
           <Route path="/history" element={<History />} />
